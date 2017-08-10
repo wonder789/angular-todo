@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS TodoApp</title>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+
+<body ng-app="todoApp">
+  <div class="wrap">
+    <div class="container">
+      <div class="todo-app" ng-controller="todoController">
+        <div class="app-header">
+          <h2>Angular TodoApp</h2>
+          <form name="searchForm">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="searchKeyword" />
+              <div class="input-group-btn">
+                <button class="btn btn-primary">할 일 검색</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="app-body">
+            <ul class="list-unstyled" class="todo-list list-group">
+              <li class="todo-item list-group-item" ng-repeat="todo in todos | filter:searchKeyword">
+                <span class="todo-content">
+                  {{todo.content}}
+                </span>
+                <span class="help-block">
+                  <span class="date">
+                    <i class="fa fa-clock-o"></i> {{ todo.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}}
+                  </span>
+                </span>
+                <div class="btn-group">
+                  <button class="btn btn-success" ng-click="todoComplete(todo)"><i class="fa fa-check"></i>완료하기</button>
+                  <button class="btn btn-danger" ng-click="todoRemove(todo)"><i class="fa fa-trash"></i>삭제하기</button>
+                </div>
+              </li>
+            </ul>
+        </div>
+      </div> <!-- todo App End -->
+    </div>
+  </div>
+  <!-- External JS    -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+.app-header{
+  margin-bottom:10px;
+}
+.todo-item{
+  position:relative;
+  padding-right:200px;
+}
+
+.todo-item .btn-group{
+  position: absolute;
+  right: 10px;
+  top: 20px;
+}
