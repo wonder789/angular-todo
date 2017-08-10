@@ -25,13 +25,18 @@
                 <button class="btn btn-primary"><i class="fa fa-search"></i>검색</button>
               </div>
             </div>
+            <div class="filter-wrap">
+              <label for="all" class="radio-inline"><input type='radio'  id="all"  name="searchStatus" ng-model="searchStatus" value=""/>전체</label>
+              <label for="completed" class="radio-inline"><input type='radio'  id="completed"  name="searchStatus" ng-model="searchStatus" value="true"/>완료된</label>
+              <label for="uncompleted" class="radio-inline"><input type="radio"  id="uncompleted" name="searchStatus" ng-model="searchStatus" value="false">미완료</label>
+            </div>
           </form>
         </div>
 
         <!-- Todo App Body -->
         <div class="app-body">
             <ul class="list-unstyled" class="todo-list list-group">
-              <li class="todo-item list-group-item" ng-class="todo.completed ? 'todo-completed' : ''" ng-repeat="todo in todos | filter:searchKeyword track by $index" >
+              <li class="todo-item list-group-item" ng-class="todo.completed ? 'todo-completed' : ''" ng-repeat="todo in todos | filter:{content:searchKeyword, completed : searchStatus} track by $index" >
                 <span class="todo-content">
                   {{todo.content}}
                 </span>
