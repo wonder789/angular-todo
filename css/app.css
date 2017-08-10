@@ -11,3 +11,11 @@
   right: 10px;
   top: 20px;
 }
+
+.todo-item.todo-completed{
+  background:#dedede;
+}
+
+.btn-wrap{
+  margin-top:10px;  
+}

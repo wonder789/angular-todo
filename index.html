@@ -14,20 +14,24 @@
   <div class="wrap">
     <div class="container">
       <div class="todo-app" ng-controller="todoController">
+
+        <!-- Todo App header -->
         <div class="app-header">
-          <h2>Angular TodoApp</h2>
+          <h2>Todo App</h2>
           <form name="searchForm">
             <div class="input-group">
               <input type="text" class="form-control" ng-model="searchKeyword" />
               <div class="input-group-btn">
-                <button class="btn btn-primary">할 일 검색</button>
+                <button class="btn btn-primary"><i class="fa fa-search"></i>검색</button>
               </div>
             </div>
           </form>
         </div>
+
+        <!-- Todo App Body -->
         <div class="app-body">
             <ul class="list-unstyled" class="todo-list list-group">
-              <li class="todo-item list-group-item" ng-repeat="todo in todos | filter:searchKeyword">
+              <li class="todo-item list-group-item" ng-class="todo.completed ? 'todo-completed' : ''" ng-repeat="todo in todos | filter:searchKeyword track by $index" >
                 <span class="todo-content">
                   {{todo.content}}
                 </span>
@@ -37,11 +41,29 @@
                   </span>
                 </span>
                 <div class="btn-group">
-                  <button class="btn btn-success" ng-click="todoComplete(todo)"><i class="fa fa-check"></i>완료하기</button>
+                  <button class="btn btn-success" ng-click="todoToggleComplete(todo)" ng-if="!todo.completed">
+                    <i class="fa fa-check"></i> 완료하기
+                  </button>
+                  <button class="btn btn-default" ng-click="todoToggleComplete(todo)" ng-if="todo.completed">
+                    <i class="fa fa-reply"></i> 완료취소
+                  </button>
                   <button class="btn btn-danger" ng-click="todoRemove(todo)"><i class="fa fa-trash"></i>삭제하기</button>
                 </div>
               </li>
             </ul>
+        </div>
+
+        <!-- Todo App footer -->
+        <div class="app-footer">
+          <h3><i class="fa fa-plus"></i>Todo Add</h3>
+          <form name="todoForm">
+              <textarea class="form-control" ng-model="newTodoContent" ng-enter="todoAdd(newTodoContent)"></textarea>
+              <p class="text-right btn-wrap">
+                <button class="btn btn-info" ng-click="todoAdd(newTodoContent)">
+                  <i class="fa fa-save"></i>등록하기
+                </button>
+              </p>
+          </form>
         </div>
       </div> <!-- todo App End -->
     </div>
